@@ -19,18 +19,25 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+const API = 'https://api.github.com/users/pjmiles/repos'
+
 export default {
     name: "RepoFetch",
     props: {
         msg: String
+    },
+    mounted(){
+        axios.get(API)
+        .then((resp) => {
+            console.log(resp.data)
+        })
     }
 }
 </script>
 
 <style scoped>
 
-table {
-
-}
 
 </style>
