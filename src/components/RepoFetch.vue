@@ -7,12 +7,12 @@
             <tr>
                 <th>Name</th>
                 <th>Url</th>
-                <th>Language</th>
+                <th>ID</th>
             </tr>
-            <tr>
-                <td>N1</td>
-                <td>U1</td>
-                <td>L1</td>
+            <tr v-for="item in repo" v-bind:key="item.id">
+                <td>{{ item.name }}</td>
+                <td>{{ item.url }}</td>
+                <td>{{ item.id }}</td>
             </tr>
         </table>
     </section>
@@ -28,9 +28,13 @@ export default {
     props: {
         msg: String
     },
+    data(){
+        return {repo: undefined}
+    },
     mounted(){
         axios.get(API)
         .then((resp) => {
+            this.repo = resp.data
             console.log(resp.data)
         })
     }
