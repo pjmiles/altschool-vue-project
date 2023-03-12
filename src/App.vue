@@ -1,12 +1,31 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <RepoFetch  />
+  <Suspense @pending="pending" @fallback="fallback" @resolved="resolved">
+    <template #default>
+      <RepoFetch  />
+    </template>
+    <template #fallback>
+      <p>Loading...</p>
+    </template>
+  </Suspense>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import RepoFetch from './components/RepoFetch.vue';
+
+const pending = () => {
+  console.log('pending')
+}
+
+const fallback = () =>{
+  console.log("fallback")
+}
+
+const resolved = () => {
+  console.log("resolved")
+}
 
 export default {
   name: 'App',
