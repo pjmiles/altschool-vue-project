@@ -9,7 +9,7 @@
                 <th>Url</th>
                 <th>ID</th>
             </tr>
-            <tr v-for="item in repo" v-bind:key="item.id">
+            <tr v-for="item in repos" v-bind:key="item.id">
                 <td>{{ item.name }}</td>
                 <td>{{ item.url }}</td>
                 <td>{{ item.id }}</td>
@@ -20,7 +20,6 @@
 
 <script>
 import axios from 'axios';
-import { ref } from 'vue';
 
 const API = 'https://api.github.com/users/pjmiles/repos'
 
@@ -29,34 +28,21 @@ export default {
     props: {
         msg: String
     },
-    // async setup(){
-    //     const repo = ref([])
-
-    //     const getRepo = async () => {
-    //         await axios.get(API)
-    //         .then((response) => {
-    //             this.repo = response.data
-    //             console.log("Its working", response)
-    //         })
-    //         await getRepo();
-    //         return {
-    //             repo
-    //         }
-    //     }
-    // },
-    name: "RepoFetch",
-    props: {
-        msg: String
-    },
+    methods: {
+        async fetchRepos(){
+            try {
+                const response = await axios.get(API)
+                this.repos = response.data
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    }, 
     mounted(){
-        axios.get(API)
-        .then((resp) => {
-            this.repo = resp.data
-            console.log(resp.data)
-        })
-    },
+        this.fetchRepos()
+    }, 
     data(){
-        return {repo: undefined}
+        return {repos: undefined}
     },
 }
 </script>
