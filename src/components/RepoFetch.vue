@@ -4,6 +4,11 @@
 
     <section>
         <div>
+            <div>
+                <router-link to="/">Home</router-link>
+            </div>
+      </div>
+        <div>
             <label htmlFor="username">
                 <input type="text" placeholder="username" v-model="searchRepo" />
                 <button @click="sumbmitSearch">Submit</button>

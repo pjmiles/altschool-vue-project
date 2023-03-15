@@ -1,8 +1,7 @@
-import { createRouter , createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/components/Home.vue";
-import RepoFetchVue from "@/components/RepoFetch.vue";
+import RepoFetch from "@/components/RepoFetch.vue";
 import NotFound from "@/components/NotFound.vue";
-
 
 const routes = [
     {
@@ -10,18 +9,16 @@ const routes = [
         component: Home,
     },
     {
-        path: "/myrepos",
-        component: RepoFetchVue,
+        path: "/repofetch",
+        component: RepoFetch,
     },
     {
         path: "/:catchAll(.*)", // wildcard to catch all path errors
-        name: "NotFound",
         component: NotFound,
     }
 ]
-
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL)
+    history: createWebHistory(process.env.BASE_URL),
+    routes,
 })
-
 export default router
