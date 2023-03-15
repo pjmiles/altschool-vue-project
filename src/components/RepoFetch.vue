@@ -9,6 +9,9 @@
                 <button @click="sumbmitSearch">Submit</button>
             </label>
         </div>
+        <div v-if="errorMessage">
+            <p>Something went wrong, please try again.</p>
+        </div>
         <div v-if="loading">
             <p>Loading...</p>
         </div>
@@ -47,8 +50,8 @@ export default {
             loading: true,
             pageNumber: 1,
             perPage: 5,
-            searchRepo: "osebest",
-            errorMessage: ""
+            searchRepo: "pjmiles",
+            errorMessage: false
         }
     },
     methods: {
@@ -56,9 +59,9 @@ export default {
             try {
                 const response = await axios.get(`https://api.github.com/users/${this.searchRepo}/repos`)
                 this.repos = response.data
-            } catch (error) {
-                console.error(error)
-                this.errorMessage = "Something went wrong please try again"
+            } catch(err) {
+                console.error(err)
+                this.errorMessage = true
             } finally {
                 this.loading = false
                 this.searchRepo = ""
@@ -80,9 +83,6 @@ export default {
                 this.fetchRepos()
             }
         },
-        displayMessage(){
-            this.fetchRepos()
-        }
     },
     mounted(){
         this.fetchRepos()
