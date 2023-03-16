@@ -1,6 +1,6 @@
 <template>
       <router-view />
-    <RepoFetch  />
+    <!-- <RepoFetch  /> -->
 </template>
 
 <script>
