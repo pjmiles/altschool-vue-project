@@ -29,7 +29,7 @@
             <tr v-for="item in filterRepos" v-bind:key="item.id">
                 <td>{{ item.name }}</td>
                 <td>{{ item.url }}</td>
-                <td>{{ item.id }}</td>
+                <router-link :to="{ name: 'repoDetails', params: { id: item.id }}"><td>{{ item.id }}</td></router-link>
             </tr>
         </table>
         <div>
