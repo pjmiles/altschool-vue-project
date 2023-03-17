@@ -42,8 +42,6 @@
 <script>
 import axios from 'axios';
 
-const API = `https://api.github.com/users/pjmiles/repos`
-
 export default {
     name: "RepoFetch",
     props: {
@@ -62,7 +60,7 @@ export default {
     methods: {
         async fetchRepos(){
             try {
-                const response = await axios.get(`https://api.github.com/users/${this.searchRepo}/repos`)
+                const response = await axios.get(`${this.base_url}${this.searchRepo}/repos`)
                 this.repos = response.data
             } catch(err) {
                 console.error(err)
