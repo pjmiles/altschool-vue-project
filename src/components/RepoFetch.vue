@@ -1,18 +1,22 @@
 <template>
-    <h1>RepoNet</h1>
-    <h2>{{ msg }}</h2>
+<div class="container-fluid position-relative">
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <div class="container-fluid">
+            <h1 class="navbar-brand"><strong>RepoNet</strong></h1>
+        </div>
+    </nav>
 
     <section>
-        <div>
-            <div>
-                <!-- <router-link to="/">Home</router-link> -->
-            </div>
-      </div>
         <div>
             <label htmlFor="username">
                 <input type="text" placeholder="username" v-model="searchRepo" />
                 <button @click="sumbmitSearch">Submit</button>
             </label>
+        </div>
+        <div>
+            <div class="text-center">
+                <img src="" class="rounded" alt="repo-owner">
+            </div>  
         </div>
         <div v-if="errorMessage">
             <p>Something went wrong, please try again.</p>
@@ -20,23 +24,37 @@
         <div v-if="loading">
             <p>Loading...</p>
         </div>
-        <table v-else>
+        <!-- <table >
             <tr>
                 <th>Name</th>
                 <th>Url</th>
                 <th>ID</th>
             </tr>
             <tr v-for="item in filterRepos" v-bind:key="item.id">
+
                 <td>{{ item.name }}</td>
                 <td>{{ item.url }}</td>
                 <router-link :to="{ name: 'repoDetails', params: { id: item.id }}"><td>{{ item.id }}</td></router-link>
             </tr>
-        </table>
-        <div>
+        </table> -->
+        <div v-else class="row row-cols-2 justify-content-md-center">
+            <div v-for="item in filterRepos" v-bind:key="item.id" class="card text-dark bg-light col">
+                <div class="card-header">{{ item.name }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.full_name }}</h5>
+                        <p class="card-text">{{ item.id }}</p>
+                        <i></i>
+                    </div>
+                </div>
+            <div>
+        </div>
+    </div>
+</section>
+</div>
+        <footer class="footer mt-auto py-3 bg-light">
             <button @click="previous">prev</button>
             <button @click="next">next</button>
-        </div>
-    </section>
+        </footer>
 </template>
 
 <script>
@@ -63,6 +81,7 @@ export default {
             try {
                 const response = await axios.get(`${this.base_url}${this.searchRepo}/repos`)
                 this.repos = response.data
+                console.log(response)
             } catch(err) {
                 console.error(err)
                 this.errorMessage = true
