@@ -15,7 +15,7 @@
     methode: {
       async fetchRepos(){
             try {
-                const response = await axios.get(`https://api.github.com/users/${this.searchRepo}/repos`)
+                const response = await axios.get(`${this.base_url}${this.searchRepo}/repos`)
                 this.repos = response.data
             } catch(err) {
                 console.error(err)

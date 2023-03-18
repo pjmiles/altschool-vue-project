@@ -54,7 +54,8 @@ export default {
             pageNumber: 1,
             perPage: 5,
             searchRepo: "pjmiles",
-            errorMessage: false
+            errorMessage: false,
+            id: ""
         }
     },
     methods: {
