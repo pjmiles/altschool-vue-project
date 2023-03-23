@@ -37,12 +37,13 @@
                 <router-link :to="{ name: 'repoDetails', params: { id: item.id }}"><td>{{ item.id }}</td></router-link>
             </tr>
         </table> -->
-        <div v-else class="row row-cols-2 justify-content-md-center">
-            <div v-for="item in filterRepos" v-bind:key="item.id" class="card text-dark bg-light col">
+        <div v-else class="row row-cols-2 justify-content-center">
+            <div v-for="item in filterRepos" v-bind:key="item.id" class="card text-dark m-2 bg-light col-lg-3 col-sm-5 ">
                 <div class="card-header">{{ item.name }}</div>
                     <div class="card-body">
                         <h5 class="card-title">{{ item.full_name }}</h5>
                         <p class="card-text">{{ item.id }}</p>
+                        <router-link :to="{ name: 'repoDetails', params: { id: item.id }}"><td>{{ item.id }}</td></router-link>
                         <i></i>
                     </div>
                 </div>
@@ -73,7 +74,6 @@ export default {
             perPage: 5,
             searchRepo: "pjmiles",
             errorMessage: false,
-            id: ""
         }
     },
     methods: {
@@ -106,6 +106,9 @@ export default {
                 this.fetchRepos()
             }
         },
+        getRepoDetails(){
+            params
+        }
     },
     mounted(){
         this.fetchRepos()
