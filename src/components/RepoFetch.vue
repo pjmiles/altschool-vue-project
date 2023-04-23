@@ -1,43 +1,30 @@
 <template>
 <div class="container-fluid position-relative">
-    <nav class="navbar fixed-top navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-light bg-dark">
         <div class="container-fluid">
-            <h1 class="navbar-brand"><strong>RepoNet</strong></h1>
+            <h1 class="navbar-brand text-primary"><strong>RepoNet</strong></h1>
         </div>
     </nav>
 
     <section>
         <div>
             <label htmlFor="username">
-                <input type="text" placeholder="username" v-model="searchRepo" />
-                <button @click="sumbmitSearch">Submit</button>
+                <input type="text" placeholder="username" v-model="searchRepo" class="border border-primary mt-4 p-1 "/>
+                <button type="button" class="btn btn-outline-primary" @click="sumbmitSearch">Submit</button>
             </label>
         </div>
-        <div>
+        <!-- <div>
             <div class="text-center">
                 <img src="" class="rounded" alt="repo-owner">
             </div>  
-        </div>
+        </div> -->
         <div v-if="errorMessage">
             <p>Something went wrong, please try again.</p>
         </div>
         <div v-if="loading">
             <p>Loading...</p>
         </div>
-        <!-- <table >
-            <tr>
-                <th>Name</th>
-                <th>Url</th>
-                <th>ID</th>
-            </tr>
-            <tr v-for="item in filterRepos" v-bind:key="item.id">
-
-                <td>{{ item.name }}</td>
-                <td>{{ item.url }}</td>
-                <router-link :to="{ name: 'repoDetails', params: { id: item.id }}"><td>{{ item.id }}</td></router-link>
-            </tr>
-        </table> -->
-        <div v-else class="row row-cols-2 justify-content-center">
+        <div v-else class="row row-cols-2 justify-content-center mt-4">
             <div v-for="item in filterRepos" v-bind:key="item.id" class="card text-dark m-2 bg-light col-lg-3 col-sm-5 ">
                 <div class="card-header">{{ item.name }}</div>
                     <div class="card-body">
@@ -52,9 +39,9 @@
     </div>
 </section>
 </div>
-        <footer class="footer mt-auto py-3 bg-light">
-            <button @click="previous">prev</button>
-            <button @click="next">next</button>
+        <footer class="footer py-3 bg-light mb-md-0 fixed-bottom" >
+            <button class="btn btn-outline-primary" @click="previous">prev</button>
+            <button class="btn btn-outline-primary" @click="next">next</button>
         </footer>
 </template>
 
